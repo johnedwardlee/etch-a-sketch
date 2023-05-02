@@ -1,0 +1,61 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  background-color: lightslategray;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: red;
+  padding: 10px;
+  gap: 15px;
+}
+
+.top {
+  background-color: red;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: goldenrod;
+  font-style: italic;
+}
+
+.grid-container {
+  display: flex;
+}
+
+.grid-border {
+  background-color: red;
+  width: 30px;
+}
+
+.grid {
+  background-color: white;
+  height: 320px;
+  width: 320px;
+  border-radius: 10px;
+}
+
+.options {
+  background-color: red;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.knob {
+}
