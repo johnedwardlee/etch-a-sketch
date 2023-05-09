@@ -16,14 +16,30 @@
       <div class="top"><h2>Etch-A-Sketch</h2></div>
       <div class="grid-container">
         <div class="grid-border"></div>
-        <div class="grid"></div>
+        <div id="grid"></div>
         <div class="grid-border"></div>
       </div>
       <div class="options">
-        <button class="knob btn-color">Color</button>
-        <button class="btn-middle">Grid Size</button>
-        <button class="btn-middle btn-clear">Clear</button>
-        <button class="knob btn-eraser">Eraser</button>
+        <button class="knob btn-color">
+          <span class="front-round">Color</span>
+        </button>
+        <div class="middle-btns">
+          <button class="btn-middle btn-rand">
+            <span class="front">Random</span>
+          </button>
+          <button class="btn-middle btn-shade">
+            <span class="front">Shadeing</span>
+          </button>
+          <button class="btn-middle btn-size">
+            <span class="front">Grid Size</span>
+          </button>
+          <button class="btn-middle btn-clear">
+            <span class="front">Clear</span>
+          </button>
+        </div>
+        <button class="knob btn-eraser">
+          <span class="front-round">Eraser</span>
+        </button>
       </div>
     </div>
   </body>
