@@ -1,7 +1,7 @@
 // Globals
-let gridSize = 16;
+let gridSize = 32;
 let mouseLock = false;
-let color = '#000';
+let color = '#000000';
 // Functions
 function fillBox(e) {
   if (e.type === 'mouseover' && !mouseLock) return;
@@ -38,6 +38,15 @@ function setGridSize() {
   drawGrid();
 }
 
+function selectColor() {
+  let colorPicker = document.getElementById('color-picker');
+  colorPicker.addEventListener('input', function () {
+    color = this.value;
+    colorBox.style.cssText = `background:${color}`;
+  });
+  colorPicker.click();
+}
+
 // Main
 const grid = document.getElementById('grid');
 const gridStyle = getComputedStyle(grid);
@@ -48,9 +57,11 @@ const gridSizeBtn = document.querySelector('.btn-size');
 const clearBtn = document.querySelector('.btn-clear');
 const eraserBtn = document.querySelector('.btn-eraser');
 const midButtonTexts = document.querySelectorAll('.front');
+const colorBox = document.getElementById('color-box');
 midButtonTexts[2].textContent = `Grid Size: ${gridSize}`;
 gridSizeBtn.addEventListener('click', setGridSize);
-clearBtn.addEventListener('click', clearGrid);
+clearBtn.addEventListener('click', drawGrid);
+colorBtn.addEventListener('click', selectColor);
 document.body.onmousedown = () => (mouseLock = true);
 document.body.onmouseup = () => (mouseLock = false);
 drawGrid();
