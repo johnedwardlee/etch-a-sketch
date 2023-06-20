@@ -3,6 +3,8 @@ let gridSize = 32;
 let mouseLock = false;
 let color = '#000000';
 let randLock = false;
+let shadeLock = false;
+let shader = 0.1;
 const grid = document.getElementById('grid');
 const gridStyle = getComputedStyle(grid);
 const colorBtn = document.querySelector('.btn-color');
@@ -18,7 +20,14 @@ function fillBox(e) {
   if (e.type === 'mouseover' && !mouseLock) return;
   if (randLock){
     e.target.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-  } else {
+  } else if(shadeLock){
+    e.target.style.backgroundColor = hexToRGB(color, shader);
+    shader += .1;
+    if (shader > 1){
+      shader = 0.1;
+    }
+  }
+  else {
     e.target.style.backgroundColor = color;
   }
 }
@@ -54,6 +63,8 @@ function setGridSize() {
 }
 
 function selectColor() {
+  randLock = false;
+  shadeLock = false;
   const colorPicker = document.getElementById('color-picker');
   colorPicker.addEventListener('input', function () {
     color = this.value;
@@ -63,6 +74,8 @@ function selectColor() {
 }
 
 function selectErase() {
+  randLock = false;
+  shadeLock = false;
   color = '#ffff';
 }
 
@@ -74,6 +87,25 @@ function selectRandom() {
   }
 }
 
+function hexToRGB(hex, alpha) {
+  let r = parseInt(hex.slice(1, 3), 16),
+      g = parseInt(hex.slice(3, 5), 16),
+      b = parseInt(hex.slice(5, 7), 16);
+  if (alpha) {
+      return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+  } else {
+      return "rgb(" + r + ", " + g + ", " + b + ")";
+  }
+}
+
+function selectShade() {
+  if (!shadeLock) {
+    shadeLock = true;
+  } else {
+    shadeLock = false;
+  }
+}
+
 // Main
 midButtonTexts[2].textContent = `Grid Size: ${gridSize}`;
 gridSizeBtn.addEventListener('click', setGridSize);
@@ -81,6 +113,7 @@ clearBtn.addEventListener('click', drawGrid);
 colorBtn.addEventListener('click', selectColor);
 eraserBtn.addEventListener('click', selectErase);
 randBtn.addEventListener('click', selectRandom);
+shadeBtn.addEventListener('click', selectShade);
 document.body.onmousedown = () => (mouseLock = true);
 document.body.onmouseup = () => (mouseLock = false);
 drawGrid();
